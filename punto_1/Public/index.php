@@ -16,8 +16,9 @@ use Core\Routing\RouteCollection;
 $routes = new RouteCollection();
 
 // Agrega rutas
-$routes->add(new Route('GET', '/inicio', 'MiControlador', 'metodoInicio'));
-$routes->add(new Route('GET', '/acerca', 'MiControlador', 'metodoAcerca'));
+$routes->add(new Route('GET', '/', 'App\Controllers\EmployeesController', 'index'));
+$routes->add(new Route('GET', '/create', 'App\Controllers\EmployeesController', 'storeView'));
+
 
 // Crea una instancia de Router con la colección de rutas
 $router = new Router($routes);
