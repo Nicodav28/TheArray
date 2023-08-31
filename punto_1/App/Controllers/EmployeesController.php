@@ -29,9 +29,42 @@ class EmployeesController
         ]);
     }
 
-    public function storeView()
+    public function store()
     {
-        $template = $this->twig->load('createEmployee.twig');
-        echo $template->render();
+        $employeeRegister = $this->model->store($_POST);
+
+        $template = $this->twig->load('index.twig');
+
+        $response = $employeeRegister ?
+            ['error' => false, 'mensaje' => 'Empleado registrado correctamente'] :
+            ['error' => true, 'mensaje' => 'Error al registrar empleado'];
+
+        echo $template->render($response);
+    }
+
+    public function delete()
+    {
+        $employeeDelete = $this->model->delete($_POST['id']);
+
+        $template = $this->twig->load('index.twig');
+
+        $response = $employeeDelete ?
+            ['error' => false, 'mensaje' => 'Empleado eliminado correctamente'] :
+            ['error' => true, 'mensaje' => 'Error al eliminar empleado'];
+
+        echo $template->render($response);
+    }
+
+    public function update()
+    {
+        $employeeUpdate = $this->model->update($_POST);
+
+        $template = $this->twig->load('index.twig');
+
+        $response = $employeeUpdate ?
+            ['error' => false, 'mensaje' => 'Empleado actualizado correctamente'] :
+            ['error' => true, 'mensaje' => 'Error al actualizar empleado'];
+
+        echo $template->render($response);
     }
 }

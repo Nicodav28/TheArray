@@ -17,7 +17,7 @@ $routes = new RouteCollection();
 
 // Agrega rutas
 $routes->add(new Route('GET', '/', 'App\Controllers\EmployeesController', 'index'));
-$routes->add(new Route('GET', '/create', 'App\Controllers\EmployeesController', 'storeView'));
+$routes->add(new Route('POST', '/create', 'App\Controllers\EmployeesController', 'store'));
 
 
 // Crea una instancia de Router con la colección de rutas
