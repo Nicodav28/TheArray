@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Config\Database;
+use PDO;
 
 class EmployeesModel
 {
@@ -40,41 +41,38 @@ class EmployeesModel
         return ($statement->execute()) ? true : false;
     }
 
-    public function delete($id)
+    public function show($id)
     {
-        $statement = $this->db->prepare("DELETE FROM employees WHERE id = :id");
+        $statement = $this->db->prepare("SELECT * FROM employees WHERE id = :id");
         $statement->bindParam(':id', $id);
+
+        return ($statement->execute()) ? $statement->fetch() : false;
+    }
+
+    public function update($id, $params)
+    {
+        $statement = $this->db->prepare(
+            "UPDATE employees
+                SET nombres = :name, apellidos = :surname, edad = :yo, fecha_ingreso = :date, comentarios = :comments
+                    WHERE id = :id"
+        );
+
+        $statement->bindParam(':id', $id);
+        $statement->bindParam(':name', $params['nameUpd']);
+        $statement->bindParam(':surname', $params['surnameUpd']);
+        $statement->bindParam(':yo', $params['yoUpd']);
+        $statement->bindParam(':date', $params['dateUpd']);
+        $statement->bindParam(':comments', $params['commentsUpd']);
+
 
         return ($statement->execute()) ? true : false;
     }
 
-    public function update($params)
+
+    public function delete($id)
     {
-        $sql = "UPDATE employees SET ";
-        $updateFields = [];
-
-        foreach ($params as $key => $value) {
-            if ($value !== '' && in_array($key, ['name', 'surname', 'yo', 'date', 'comments'])) {
-                $updateFields[] = "$key = :$key";
-            }
-        }
-
-        if (empty($updateFields)) {
-            return false;
-        }
-
-        $sql .= implode(", ", $updateFields);
-        $sql .= " WHERE id = :id";
-
-        $statement = $this->db->prepare($sql);
-
-        $statement->bindParam(':id', $params['id']);
-
-        foreach ($params as $key => $value) {
-            if ($value !== '' && in_array($key, ['name', 'surname', 'yo', 'date', 'comments'])) {
-                $statement->bindParam(":$key", $value);
-            }
-        }
+        $statement = $this->db->prepare("DELETE FROM employees WHERE id = :id");
+        $statement->bindParam(':id', $id);
 
         return ($statement->execute()) ? true : false;
     }

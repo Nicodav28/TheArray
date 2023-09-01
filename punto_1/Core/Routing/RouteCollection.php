@@ -13,12 +13,21 @@ class RouteCollection
 
     public function match($requestMethod, $requestUri)
     {
+        $matchingRoutes = [];
+
         foreach ($this->routes as $route) {
-            if ($route->match($requestMethod, $requestUri)) {
-                return $route;
+
+            $params = $route->match($requestMethod, $requestUri);
+
+            if ($params !== null) {
+                // Almacena la ruta coincidente y sus parámetros
+                $matchingRoutes[] = [
+                    'route' => $route,
+                    'params' => $params,
+                ];
             }
         }
 
-        return null;
+        return $matchingRoutes;
     }
 }

@@ -5,29 +5,29 @@ namespace Core\Routing;
 class Route
 {
     protected $method;
-    protected $uri;
+    protected $uriPattern; // Patrón de la URL con parámetros dinámicos
     protected $controller;
     protected $methodToCall;
 
-    public function __construct($method, $uri, $controller, $methodToCall)
+    public function __construct($method, $uriPattern, $controller, $methodToCall)
     {
         $this->method = $method;
-        $this->uri = $uri;
+        $this->uriPattern = $this->buildPattern($uriPattern); // Usamos el patrón construido
         $this->controller = $controller;
         $this->methodToCall = $methodToCall;
     }
 
     public function match($requestMethod, $requestUri)
     {
-        if ($this->method !== $requestMethod) {
-            return false;
+        if ($this->method !== $requestMethod || preg_match('#\.(css|js|png|jpg|jpeg|gif)$#i', $requestUri)) {
+            return null;
         }
 
-        $pattern = str_replace('/', '\/', $this->uri);
-        $pattern = preg_replace('/\{([^}]+)\}/', '(?P<\1>[^\/]+)', $pattern);
-        $pattern = '/^' . $pattern . '$/';
+        if (preg_match($this->uriPattern, $requestUri, $matches)) {
+            return $matches;
+        }
 
-        return preg_match($pattern, $requestUri);
+        return null; // No se encontró coincidencia
     }
 
     public function getController()
@@ -38,5 +38,14 @@ class Route
     public function getMethodToCall()
     {
         return $this->methodToCall;
+    }
+
+    protected function buildPattern($uriPattern)
+    {
+        // Escapa los caracteres especiales en el patrón
+        $pattern = preg_replace('#\{([^}]+)\}#', '(?P<\1>[^/]+)', $uriPattern);
+
+        // Agrega delimitadores '/' y anclajes para coincidir con la URL completa
+        return '#^' . $pattern . '$#';
     }
 }

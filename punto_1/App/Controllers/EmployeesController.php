@@ -31,40 +31,29 @@ class EmployeesController
 
     public function store()
     {
-        $employeeRegister = $this->model->store($_POST);
+        $this->model->store($_POST);
 
-        $template = $this->twig->load('index.twig');
-
-        $response = $employeeRegister ?
-            ['error' => false, 'mensaje' => 'Empleado registrado correctamente'] :
-            ['error' => true, 'mensaje' => 'Error al registrar empleado'];
-
-        echo $template->render($response);
+        header('Location: /');
     }
 
-    public function delete()
+    public function show($id)
     {
-        $employeeDelete = $this->model->delete($_POST['id']);
+        $data = $this->model->show($id);
 
-        $template = $this->twig->load('index.twig');
-
-        $response = $employeeDelete ?
-            ['error' => false, 'mensaje' => 'Empleado eliminado correctamente'] :
-            ['error' => true, 'mensaje' => 'Error al eliminar empleado'];
-
-        echo $template->render($response);
+        echo json_encode($data);
     }
 
-    public function update()
+    public function delete($id)
     {
-        $employeeUpdate = $this->model->update($_POST);
+        $this->model->delete($id);
 
-        $template = $this->twig->load('index.twig');
+        header('Location: /');
+    }
 
-        $response = $employeeUpdate ?
-            ['error' => false, 'mensaje' => 'Empleado actualizado correctamente'] :
-            ['error' => true, 'mensaje' => 'Error al actualizar empleado'];
+    public function update($id)
+    {
+        $this->model->update($id, $_POST);
 
-        echo $template->render($response);
+        header('Location: /');
     }
 }
