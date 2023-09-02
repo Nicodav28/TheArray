@@ -2,7 +2,7 @@
 
 Se valorarán todas las aclaraciones, comentarios y documentación que considere pertinente para facilitar la corrección de la prueba.
 
-## 1. Backend PHP (Parte 1)
+## ~~1. Backend PHP (Parte 1)~~
 
 Implementar la representación del acrónimo CRUD (Create, Read, Update y Delete) para la gestión de nuevos empleados vía un formulario, con los siguientes datos:
 
@@ -16,7 +16,7 @@ El resultado del punto debe guardarse en una carpeta cuyo nombre sea `backend-ph
 
 > **Nota:** La implementación debe contener código PHP nativo. En esta primera parte, la utilización de código HTML y CSS puede ser básica. Todos los campos son obligatarios salvo "Comentarios" que puede quedar vacío en caso de que el operador así lo desee.  
 
-## 2. Frontend
+## ~~2. Frontend~~
 
 Implementar para el punto anterior una librerí­a, como puede ser el caso de [Bootstrap](https://getbootstrap.com/) o la que considere más apropiada, a fin de incorporar mejoras en los componentes visuales de la aplicación. La implementación de <u>la librería frontend no debe alterar el funcionamiento original</u> de la aplicación. El resultado del punto debe guardarse en una carpeta cuyo nombre sea `frontend`. 
 
