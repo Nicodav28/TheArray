@@ -26,6 +26,17 @@
 		</div>
 
 		<div class="mx-auto" style="width: 92%;">
+			{% if errors is defined %}
+				<div id="error-message" class="alert alert-danger" style="display: none;">
+					<strong>{{ errors }}</strong>
+				</div>
+			{% endif %}
+			{% if error_message is defined %}
+				<div id="error-message" class="alert alert-danger" style="display: none;">
+					<p>{{ error_message }}</p>
+				</div>
+			{% endif %}
+
 			<div class="table-wrapper">
 				<div class="table-title">
 					<div class="row">

@@ -5,55 +5,78 @@ namespace App\Controllers;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 use App\Models\EmployeesModel;
+use App\Helpers\Validator;
 
 class EmployeesController
 {
     private $model;
     private $twig;
+    private $validator;
 
     public function __construct()
     {
+        $this->model = new EmployeesModel;
+        $this->validator = new Validator;
+
         $loader = new FilesystemLoader(__DIR__ . '/../Views');
         $this->twig = new Environment($loader);
-
-        $this->model = new EmployeesModel();
     }
 
     public function index()
     {
         $employees = $this->model->index();
-        $template = $this->twig->load('index.twig');
-
-        echo $template->render([
-            'employees' => $employees,
-        ]);
+        $this->renderView('index.twig', ['employees' => $employees]);
     }
 
     public function store()
     {
-        $this->model->store($_POST);
+        $validationRules = [
+            'nombres' => 'required',
+            'apellidos' => 'required',
+            'edad' => 'required|numeric',
+            'fecha_ingreso' => 'date',
+            'comentarios' => 'nullable|max:255',
+        ];
 
-        header('Location: /');
+        $this->validator->validate($_POST, $validationRules);
+
+        if ($this->model->store($_POST)) {
+            $this->redirect('/');
+        } else {
+            $this->renderView('index.twig', ['error_message' => 'Error al guardar el registro']);
+        }
     }
 
     public function show($id)
     {
         $data = $this->model->show($id);
-
         echo json_encode($data);
     }
 
     public function delete($id)
     {
         $this->model->delete($id);
-
-        header('Location: /');
+        $this->redirect('/');
     }
 
     public function update($id)
     {
-        $this->model->update($id, $_POST);
+        if ($this->model->update($id, $_POST)) {
+            $this->redirect('/');
+        } else {
+            $this->renderView('index.twig', ['error_message' => 'Error al actualizar el registro']);
+        }
+    }
 
-        header('Location: /');
+    private function renderView($view, $data = [])
+    {
+        $template = $this->twig->load($view);
+        echo $template->render($data);
+    }
+
+    private function redirect($url)
+    {
+        header("Location: $url");
+        exit;
     }
 }

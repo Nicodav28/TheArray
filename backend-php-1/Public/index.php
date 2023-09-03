@@ -7,25 +7,22 @@ use Core\Routing\Router;
 use Core\Routing\Route;
 use Core\Routing\RouteCollection;
 
-// Crea una instancia de RouteCollection para administrar las rutas
+// Create an instance of RouteCollection to manage routes
 $routes = new RouteCollection();
 
-$routes->add(new Route('GET', '/', 'App\Controllers\EmployeesController', 'index'));
-// Create
-$routes->add(new Route('POST', '/create', 'App\Controllers\EmployeesController', 'store'));
-// Read
-$routes->add(new Route('GET', '/show/{id}', 'App\Controllers\EmployeesController', 'show'));
-// Update
-$routes->add(new Route('POST', '/update/{id}', 'App\Controllers\EmployeesController', 'update')); //TODO: Ajustar para cambio a PUT
-// Delete
-$routes->add(new Route('POST', '/delete/{id}', 'App\Controllers\EmployeesController', 'delete')); //TODO: Ajustar para cambio a DELETE  
+// Define routes for various HTTP methods and URI patterns
+$routes->add(new Route('GET', '/', 'App\Controllers\EmployeesController', 'index')); // Index
+$routes->add(new Route('POST', '/create', 'App\Controllers\EmployeesController', 'store')); // Create
+$routes->add(new Route('GET', '/show/{id}', 'App\Controllers\EmployeesController', 'show')); // Read
+$routes->add(new Route('POST', '/update/{id}', 'App\Controllers\EmployeesController', 'update')); // Update (TODO: Adjust for PUT)
+$routes->add(new Route('POST', '/delete/{id}', 'App\Controllers\EmployeesController', 'delete')); // Delete (TODO: Adjust for DELETE)
 
-// Crea una instancia de Router con la colección de rutas
+// Create an instance of Router with the collection of routes
 $router = new Router($routes);
 
-// Obtén la URL solicitada por el usuario
+// Get the requested URL and HTTP method from the server
 $requestUri = $_SERVER['REQUEST_URI'];
 $requestMethod = $_SERVER['REQUEST_METHOD'];
 
-// Enruta la solicitud actual
+// Route the current request
 $router->route($requestMethod, $requestUri);

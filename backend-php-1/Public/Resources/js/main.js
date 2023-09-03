@@ -19,6 +19,14 @@ $(document).ready(function () { // Activate tooltip
             $("#selectAll").prop("checked", false);
         }
     });
+
+    const errorMessage = $("#error-message");
+
+    if (errorMessage.length > 0) {
+        setTimeout(function () {
+            errorMessage.fadeOut("slow");
+        }, 5000);
+    }
 });
 
 const fetchDataById = (id) => {
