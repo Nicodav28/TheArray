@@ -29,31 +29,31 @@ $(document).ready(function () { // Activate tooltip
     }
 });
 
-const fetchDataById = (id) => {
-    $.ajax({
-        url: `/show/${id}`,
-        type: 'GET',
-        dataType: 'json',
-        success: function (data) {
-            $('#nameUpd').val(data.nombres);
-            $('#surnameUpd').val(data.apellidos);
-            $('#yoUpd').val(data.edad);
-            $('#commentsUpd').val(data.comentarios);
+// const fetchDataById = (id) => {
+//     $.ajax({
+//         url: `/show/${id}`,
+//         type: 'GET',
+//         dataType: 'json',
+//         success: function (data) {
+//             $('#nameUpd').val(data.nombres);
+//             $('#surnameUpd').val(data.apellidos);
+//             $('#yoUpd').val(data.edad);
+//             $('#commentsUpd').val(data.comentarios);
 
-            const fullDate = data.fecha_ingreso;
-            const splitDate = fullDate.split(' ');
-            const date = splitDate[0];
-            console.log(date);
-            $('#dateUpd').val(date);
+//             const fullDate = data.fecha_ingreso;
+//             const splitDate = fullDate.split(' ');
+//             const date = splitDate[0];
+//             console.log(date);
+//             $('#dateUpd').val(date);
 
-            $('#updateForm').attr('action', `/update/${data.id}`);
+//             $('#updateForm').attr('action', `/update/${data.id}`);
 
-        },
-        error: function (xhr, status, error) {
-            console.log('xhr', xhr, 'status', status, 'error', error);
-        }
-    });
-}
+//         },
+//         error: function (xhr, status, error) {
+//             console.log('xhr', xhr, 'status', status, 'error', error);
+//         }
+//     });
+// }
 
 const deleteDataById = (id) => {
     $('#deleteForm').attr('action', `/delete/${id}`);

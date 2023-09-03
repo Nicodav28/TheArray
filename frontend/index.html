@@ -1,0 +1,217 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Empleados</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="assets/css/styles.css">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="assets/js/main.js"></script>
+
+</head>
+
+<body>
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="text-center">The Array</h2>
+                <hr>
+            </div>
+        </div>
+    </div>
+
+    <div class="mx-auto" style="width: 92%;">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h2>Lista de Empleados</h2>
+                    </div>
+                    <div class="col-sm-6">
+                        <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal">
+                            <span>Nuevo Empleado</span>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            <span class="custom-checkbox">
+                                <input type="checkbox" id="selectAll">
+                                <label for="selectAll"></label>
+                            </span>
+                        </th>
+                        <th>id</th>
+                        <th>Nombres</th>
+                        <th>Apellidos</th>
+                        <th>Edad</th>
+                        <th>Fecha de Ingreso</th>
+                        <th>Comentarios</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <span class="custom-checkbox">
+                                <input type="checkbox" id="checkbox1" name="options[]" value="1">
+                                <label for="checkbox1"></label>
+                            </span>
+                        </td>
+                        <td>123456</td>
+                        <td>Nicolas David</td>
+                        <td>Estevez Tovar</td>
+                        <td>22</td>
+                        <td>2023-09-02</td>
+                        <td>Desarrollador Fullstack</td>
+                        <td>
+                            <a href="#editEmployeeModal" class="edit" id="editModal" data-toggle="modal">
+                                <i class="material-icons" data-toggle="tooltip" title="Edit">
+                                    <span class="material-symbols-outlined">
+                                        edit
+                                    </span>
+                                </i>
+                            </a>
+                            <a href="#deleteEmployeeModal" class="delete" data-toggle="modal" id="editModal">
+                                <i class="material-icons" data-toggle="tooltip" title="Delete">
+                                    <span class="material-symbols-outlined">
+                                        delete
+                                    </span>
+                                </i>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class='text-center align-middle' colspan='7'>
+                            <h3>No hay empleados registrados</h3>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+    <!-- Edit Modal HTML -->
+    <div id="addEmployeeModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form action="/create" method="post">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Nuevo Empleado</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Nombres</label>
+                            <input type="text" class="form-control" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Apellidos</label>
+                            <input type="text" class="form-control" id="surname" name="surname" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Edad</label>
+                            <input type="number" class="form-control" id="yo" name="yo" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Fecha de Ingreso</label>
+                            <input type="date" class="form-control" id="date" name="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Comentarios</label>
+                            <textarea class="form-control" id="comments" name="comments"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+                        <input type="submit" class="btn btn-success" value="Crear">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Modal HTML -->
+    <div id="editEmployeeModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="updateForm" method="post">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Editar Empleado</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Nombres</label>
+                            <input type="text" class="form-control" id="nameUpd" name="nameUpd" value="Nicolas David"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label>Apellidos</label>
+                            <input type="text" class="form-control" id="surnameUpd" name="surnameUpd"
+                                value="Estevez Tovar" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Edad</label>
+                            <input type="number" class="form-control" id="yoUpd" name="yoUpd" value="22" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Fecha de Ingreso</label>
+                            <input type="date" class="form-control" id="dateUpd" name="dateUpd" value="2023-09-02"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label>Comentarios</label>
+                            <textarea class="form-control" id="commentsUpd" name="commentsUpd"
+                                value="Desarrollador FullStack"></textarea>
+
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+                        <input type="submit" class="btn btn-info" value="Actualizar">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Delete Modal HTML -->
+    <div id="deleteEmployeeModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="deleteForm" method='post'>
+                    <div class="modal-header">
+                        <h4 class="modal-title">Eliminar Empleado</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Estas seguro que deseas borrar este registro?</p>
+                        <p class="text-warning">
+                            <small>Esta acción no se podra deshacer.</small>
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                        <input type="submit" class="btn btn-danger" value="Delete">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
