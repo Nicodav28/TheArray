@@ -16,8 +16,8 @@ use App\Http\Controllers\EmployeesController;
 |
 */
 
-Route::post('/employees', [EmployeesController::class, 'createEmployee']);
-Route::put('/employees/{id}', [EmployeesController::class, 'updateEmployee']);
-Route::delete('/employees/{id}', [EmployeesController::class, 'deleteEmployee']);
-Route::get('/employees', [EmployeesController::class, 'getEmployees']);
-Route::get('/employees/{id}', [EmployeesController::class, 'getEmployee']);
+Route::get('/get', [EmployeesController::class, 'index']);
+Route::post('/create', [EmployeesController::class, 'store']);
+Route::put('/update/{id}', [EmployeesController::class, 'update']);
+Route::delete('/delete/{id}', [EmployeesController::class, 'delete']);
+Route::get('/get/{id}', [EmployeesController::class, 'show']);
