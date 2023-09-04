@@ -1,3 +1,9 @@
+# Anotacion
+
+Para realizar pruebas sobre el punto 1 se debe ajustar el Host Virtual del servidor web con el que hagan pruebas o en su defecto crear un Host Virtual, alli se debe configurar el apuntamiento a la ruta public, de esa manera el .htaccess encontrara el index.php y redireccionara todas las peticiones allí.
+
+eg: backend-php-1/Public
+
 # Prueba Técnica
 
 Se valorarán todas las aclaraciones, comentarios y documentación que considere pertinente para facilitar la corrección de la prueba.
@@ -28,7 +34,7 @@ Implementar para el punto anterior una librerí­a, como puede ser el caso de [B
 Implementar en una prueba de concepto una API utilizando un framework de PHP, como puede ser el caso de [Laravel](https://laravel.com/) o el que considere más apropiado, a fin de poder obtener vía método GET el listado de los empleados dados de alta. La API debería consultar la misma base de datos utilizada en Backend PHP (Parte 1). El resultado del punto debe guardarse en una carpeta cuyo nombre sea `backend-php-2`.
 
 > **Nota:** Se valorará la inclusión de los métodos PUT, POST y DELETE.
-
+a
 ## ~~4. Backend Java~~
 
 Migrar la API del punto anterior a Java utilizado [Spring Boot](https://spring.io/projects/spring-boot) como framework de desarrollo. El resultado del punto debe guardarse en una carpeta cuyo nombre sea `backend-java`.
