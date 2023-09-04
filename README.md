@@ -1,4 +1,4 @@
-# Anotacion
+# Anotación
 
 Para realizar pruebas sobre el punto 1 se debe ajustar el Host Virtual del servidor web con el que hagan pruebas o en su defecto crear un Host Virtual, alli se debe configurar el apuntamiento a la ruta public, de esa manera el .htaccess encontrara el index.php y redireccionara todas las peticiones allí.
 
