@@ -6,8 +6,6 @@ public class ApiResponse {
     private String message;
     private Object data;
 
-    // Constructores, getters y setters aquí
-
     public ApiResponse(boolean error, String traceCode, String message, Object data) {
         this.error = error;
         this.traceCode = traceCode;

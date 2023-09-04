@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-//import javax.validation.*;
 import jakarta.validation.*;
 
 import java.util.UUID;
@@ -32,7 +31,8 @@ public class EmployeeController {
         if (employees.isEmpty()) {
             return HandleResponse.error("S404GES", "No hay empleados registrados.", HttpStatus.valueOf(404));
         }
-        return HandleResponse.success("S200GES", employees, "Empleados obtenidos correctamente.", HttpStatus.valueOf(200));
+        return HandleResponse.success("S200GES", employees, "Empleados obtenidos correctamente.",
+                HttpStatus.valueOf(200));
     }
 
     @PostMapping("create")
@@ -44,7 +44,8 @@ public class EmployeeController {
 
         boolean execution = this.employeeService.saveOrUpdateEmployee(employee);
         if (execution) {
-            return HandleResponse.success("S200CE", employee, "Empleado creado correctamente.", HttpStatus.valueOf(200));
+            return HandleResponse.success("S200CE", employee, "Empleado creado correctamente.",
+                    HttpStatus.valueOf(200));
         } else {
             return HandleResponse.error("S500CE", "Error interno del servidor.", HttpStatus.valueOf(500));
         }
@@ -55,7 +56,8 @@ public class EmployeeController {
         employee.setId(id);
         boolean execution = this.employeeService.saveOrUpdateEmployee(employee);
         if (execution) {
-            return HandleResponse.success("S200UE", employee, "Empleado actualizado correctamente.", HttpStatus.valueOf(200));
+            return HandleResponse.success("S200UE", employee, "Empleado actualizado correctamente.",
+                    HttpStatus.valueOf(200));
         } else {
             return HandleResponse.error("S500UE", "Error interno del servidor.", HttpStatus.valueOf(500));
         }
@@ -75,7 +77,8 @@ public class EmployeeController {
     public ResponseEntity<Object> getById(@PathVariable String id) {
         Optional<Employee> employee = this.employeeService.getEmployeeById(id);
         if (employee.isPresent()) {
-            return HandleResponse.success("S200GE", employee.get(), "Empleado obtenido correctamente.", HttpStatus.valueOf(200));
+            return HandleResponse.success("S200GE", employee.get(), "Empleado obtenido correctamente.",
+                    HttpStatus.valueOf(200));
         } else {
             return HandleResponse.error("S404GE", "Empleado no encontrado.", HttpStatus.valueOf(404));
         }
