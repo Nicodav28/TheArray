@@ -23,13 +23,13 @@ El resultado del punto debe guardarse en una carpeta cuyo nombre sea `backend-ph
 
 Implementar para el punto anterior una librerí­a, como puede ser el caso de [Bootstrap](https://getbootstrap.com/) o la que considere más apropiada, a fin de incorporar mejoras en los componentes visuales de la aplicación. La implementación de <u>la librería frontend no debe alterar el funcionamiento original</u> de la aplicación. El resultado del punto debe guardarse en una carpeta cuyo nombre sea `frontend`. 
 
-## 3. Backend PHP (Parte 2)
+## ~~3. Backend PHP (Parte 2)~~
 
 Implementar en una prueba de concepto una API utilizando un framework de PHP, como puede ser el caso de [Laravel](https://laravel.com/) o el que considere más apropiado, a fin de poder obtener vía método GET el listado de los empleados dados de alta. La API debería consultar la misma base de datos utilizada en Backend PHP (Parte 1). El resultado del punto debe guardarse en una carpeta cuyo nombre sea `backend-php-2`.
 
 > **Nota:** Se valorará la inclusión de los métodos PUT, POST y DELETE.
 
-## 4. Backend Java
+## ~~4. Backend Java~~
 
 Migrar la API del punto anterior a Java utilizado [Spring Boot](https://spring.io/projects/spring-boot) como framework de desarrollo. El resultado del punto debe guardarse en una carpeta cuyo nombre sea `backend-java`.
 
