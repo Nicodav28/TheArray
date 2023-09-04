@@ -2,6 +2,9 @@
 
 Se valorarán todas las aclaraciones, comentarios y documentación que considere pertinente para facilitar la corrección de la prueba.
 
+## Coleccion de Postman
+Para descargar la coleccion de Postman en caso de querer hacer pruebas: [Coleccion Postman](https://spring.io/projects/spring-boot)
+
 ## ~~1. Backend PHP (Parte 1)~~
 
 Implementar la representación del acrónimo CRUD (Create, Read, Update y Delete) para la gestión de nuevos empleados vía un formulario, con los siguientes datos:
