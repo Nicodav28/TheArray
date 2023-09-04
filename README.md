@@ -3,7 +3,7 @@
 Se valorarán todas las aclaraciones, comentarios y documentación que considere pertinente para facilitar la corrección de la prueba.
 
 ## Coleccion de Postman
-Para descargar la coleccion de Postman en caso de querer hacer pruebas: [Coleccion Postman](https://spring.io/projects/spring-boot)
+Para descargar la coleccion de Postman en caso de querer hacer pruebas: [Coleccion Postman](https://1drv.ms/f/s!AvEt0ZAwJwYv8fkqJsGX1lO47ks1xQ?e=7iQvfh)
 
 ## ~~1. Backend PHP (Parte 1)~~
 
